@@ -1,0 +1,32 @@
+{
+  "name": "android-remote",
+  "version": "1.0.0",
+  "description": "安卓-远程控制工具",
+  "main": "main.js",
+  "darwin": [
+    "dmg",
+    "zip"
+  ],
+  "win32": [
+    "squirrel"
+  ],
+  "linux": [
+    "deb",
+    "rpm"
+  ],
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+  ],
+  "author": "天创科技有限公司",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.5.0",
+    "electron": "^33.0.2"
+  },
+  "dependencies": {}
+}

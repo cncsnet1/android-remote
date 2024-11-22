@@ -1,0 +1,142 @@
+{
+    "header": [
+        " *   ",
+        " *   文件描述：本文件为网页资源信息",
+        " *   success字段为下载保存成功的资源;failures字段则为下载保存失败的资源URL",
+        " *   success字段为标准树结构，每一层资源父子关系、URL和保存路径清晰明了",
+        " *   本文件仅为记录检测到的网页资源以便于调试，非专业人员可将本文件删除",
+        " *   详细介绍请参考: https://bazhan.me/faq",
+        " *   "
+    ],
+    "success": [
+        {
+            "url": "https://geekprank.com/hacker/",
+            "path": "index.html",
+            "children": [
+                {
+                    "url": "https://geekprank.com/hacker/geek-hacker-typer.jpg",
+                    "path": "images/geek-hacker-typer.jpeg"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/wait.gif",
+                    "path": "images/wait.gif"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/lock-green.gif",
+                    "path": "images/lock-green.gif"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/top-secret.png",
+                    "path": "images/top-secret.png"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/skull.png",
+                    "path": "images/skull.png"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/topsecret.png",
+                    "path": "images/topsecret.png"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/globe.gif",
+                    "path": "images/globe.gif"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/triangle.gif",
+                    "path": "images/triangle.gif"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/satellite.gif",
+                    "path": "images/satellite.gif"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/map1.jpg",
+                    "path": "images/map1.jpeg"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/jquery-jqui.js",
+                    "path": "js/jquery-jqui.js"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/particles.min.js",
+                    "path": "js/particles.min.js"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/hacker.js?x=2020oct",
+                    "path": "js/hacker.js"
+                },
+                {
+                    "url": "https://geekprank.com/hacker/hacker.css?x=2021",
+                    "path": "css/hacker.css",
+                    "children": [
+                        {
+                            "url": "https://geekprank.com/hacker/flags.png",
+                            "path": "images/flags.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/green-folder.png",
+                            "path": "images/green-folder.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/bitcoin.png",
+                            "path": "images/bitcoin.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/green-graph.gif",
+                            "path": "images/green-graph.gif"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/hammer.png",
+                            "path": "images/hammer.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/bang.png",
+                            "path": "images/bang.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/heap.png",
+                            "path": "images/heap.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/wait-icon.png",
+                            "path": "images/wait-icon.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/ui-icons.png",
+                            "path": "images/ui-icons.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/green-back.jpg",
+                            "path": "images/green-back.jpg"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/execute.png",
+                            "path": "images/execute.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/progres.png",
+                            "path": "images/progres.png"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/server.gif",
+                            "path": "images/server.gif"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/lock-closed-green.gif",
+                            "path": "images/lock-closed-green.gif"
+                        },
+                        {
+                            "url": "https://geekprank.com/hacker/nuclearPlant.png",
+                            "path": "images/nuclearPlant.png"
+                        }
+                    ]
+                },
+                {
+                    "url": "https://geekprank.com/hacker/og.jpg",
+                    "path": "images/og.jpg"
+                }
+            ]
+        }
+    ],
+    "failures": []
+}

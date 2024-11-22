@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安卓-特种木马</title>
+  <!-- 引入 Bootstrap CSS -->
+  <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="../boostraptable/bootstrap-table.min.css">
+
+  <script src="../jquery.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="../boostraptable/bootstrap-table.min.js"></script>
+
+  <!-- Latest compiled and minified Locales -->
+  <script src="../boostraptable/locale/bootstrap-table-zh-CN.js"></script>
+  <style>
+    /* 背景和阴影样式 */
+    body {
+      background: url("../img/38.gif");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      /* 可选：背景随页面滚动 */
+
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .ribbon-menu {
+      background: linear-gradient(135deg, #2a2a3b, #14141f);
+      padding: 30px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .ribbon-group {
+      text-align: center;
+      margin: 0 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .ribbon-group:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .ribbon-group img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0px 4px 4px rgba(255, 255, 255, 0.2));
+    }
+
+    .ribbon-group h6 {
+      font-size: 18px;
+      color: #82aaff;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+    /* 表格容器的基本样式 */
+    .table-container {
+      padding: 20px;
+      max-width: 100%;
+      overflow-x: auto;
+      background-color: #14141f;
+      border-radius: 8px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 表格基本样式 */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Roboto Mono', monospace;
+      /* 使用科技感强的等宽字体 */
+      font-size: 1.2rem;
+      /* 增加字体大小 */
+      color: #00eaff;
+    }
+
+    .table thead th {
+      background: linear-gradient(135deg, #1a1a3a, #14141f, #1a1a3a);
+      /* 使用渐变背景色 */
+      color: #00d1ff;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0, 209, 255, 0.7), 0 0 5px rgba(0, 255, 255, 0.5);
+      /* 发光效果 */
+      padding: 15px 10px;
+      border-bottom: 2px solid #00d1ff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 添加发光边框和动态背景效果 */
+    .table thead th:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 234, 0.2), transparent);
+      animation: glowing-border 3s linear infinite;
+      /* 动画效果 */
+    }
+
+    /* 发光边框动画 */
+    @keyframes glowing-border {
+      0% {
+        left: -100%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    .table tbody td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #2a2a3b;
+      transition: color 0.3s, background-color 0.3s;
+    }
+
+    /* 表格内容的悬停效果 */
+    .table tbody tr:hover {
+      background-color: #1e1e29;
+    }
+
+    .table tbody td:hover {
+      color: #00ffea;
+      text-shadow: 0px 0px 5px rgba(0, 255, 234, 0.8);
+    }
+
+    /* 数字和重要内容的高亮效果 */
+    .table tbody td.important {
+      font-weight: bold;
+      color: #ffd700;
+      /* 霓虹黄色，突出重要内容 */
+      text-shadow: 0px 0px 6px rgba(255, 215, 0, 0.8);
+    }
+
+    /* 滚动条美化 */
+    .table-container::-webkit-scrollbar {
+      width: 8px;
+      background-color: #1f1f2e;
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #00d1ff, #00ffea);
+      border-radius: 4px;
+    }
+
+
+    /* Toast 容器 */
+    .tech-toast {
+      background: linear-gradient(135deg, #1a1a2e, #1f1f3d);
+      border-radius: 10px;
+      border: 1px solid #00d1ff;
+      box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
+      color: #00eaff;
+    }
+
+    /* Toast 头部 */
+    .tech-toast-header {
+      background: linear-gradient(135deg, #12121b, #1e1e30);
+      border-bottom: 1px solid #00d1ff;
+      color: #00eaff;
+      text-shadow: 0 0 5px rgba(0, 209, 255, 0.6);
+    }
+
+    /* 图标样式 */
+    .tech-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Toast body */
+    .tech-toast-body {
+      text-align: center;
+      background-color: #14141f;
+      padding: 15px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    /* 图片样式 */
+    .tech-image {
+      width: 350px;
+      height: 350px;
+      border: 2px solid #00d1ff;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 209, 255, 0.6);
+    }
+
+    /* 关闭按钮 */
+    .tech-close {
+      color: #00eaff;
+      opacity: 0.8;
+      transition: color 0.3s;
+    }
+
+    .tech-close:hover {
+      color: #00ffea;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container-fluid mt-5">
+    <!-- Ribbon 菜单 -->
+    <div class="ribbon-menu">
+
+      <!-- 第一个功能：文件操作 -->
+      <div class="ribbon-group">
+        <img src="../img/camera.png" alt="摄像头图标">
+        <h6>摄像头监听</h6>
+      </div>
+
+      <!-- 第二个功能：编辑操作 -->
+      <div class="ribbon-group">
+        <img src="../img/mic.png" alt="麦克风图标">
+        <h6>麦克风监听</h6>
+      </div>
+
+      <div class="ribbon-group">
+        <img src="../img/book.png" alt="视图图标">
+        <h6>通讯录管理</h6>
+      </div>
+      <!-- 第三个功能：格式 -->
+      <div class="ribbon-group">
+        <img src="../img/thjl.png" alt="格式图标">
+        <h6>通话记录管理</h6>
+      </div>
+
+      <!-- 第四个功能：视图 -->
+      <div class="ribbon-group">
+        <img src="../img/sms.png" alt="视图图标">
+        <h6>短信管理</h6>
+      </div>
+
+      <div class="ribbon-group">
+        <img src="../img/application.png" alt="视图图标">
+        <h6>程序管理</h6>
+      </div>
+
+      <div class="ribbon-group">
+        <img src="../img/file.png" alt="视图图标">
+        <h6>文件管理</h6>
+      </div>
+
+      <div class="ribbon-group">
+        <img src="../img/vivo.png" alt="视图图标">
+        <h6>实时屏幕</h6>
+      </div>
+
+    </div>
+
+    <div style="margin-top:30px">
+      <table id="rjtable"></table>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-md-4">
+        <div class="toast tech-toast" style="opacity: 1; max-width: 100%;" role="alert" aria-live="assertive"
+          aria-atomic="true">
+          <div class="toast-header tech-toast-header">
+            <img src="../img/camera.png" class="rounded mr-2 tech-icon" alt="...">
+            <strong class="mr-auto">摄像头监听</strong>
+            <button type="button" class="ml-2 mb-1 close tech-close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body tech-toast-body">
+            <img src="../img/application.png" class="tech-image" alt="Application">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="toast tech-toast" style="opacity: 1; max-width: 100%;" role="alert" aria-live="assertive"
+          aria-atomic="true">
+          <div class="toast-header tech-toast-header">
+            <img src="../img/mic.png" class="rounded mr-2 tech-icon" alt="...">
+            <strong class="mr-auto">麦克风监控</strong>
+            <button type="button" class="ml-2 mb-1 close tech-close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body tech-toast-body">
+            <img src="../img/application.png" class="tech-image" alt="Application">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="toast tech-toast" style="opacity: 1; max-width: 100%;" role="alert" aria-live="assertive"
+          aria-atomic="true">
+          <div class="toast-header tech-toast-header">
+            <img src="../img/vivo.png" class="rounded mr-2 tech-icon" alt="...">
+            <strong class="mr-auto">实时屏幕监控</strong>
+            <button type="button" class="ml-2 mb-1 close tech-close" data-dismiss="toast" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="toast-body tech-toast-body">
+            <img src="../img/application.png" class="tech-image" alt="Application">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- 引入 Bootstrap 的 JavaScript 库 -->
+  <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+  <script type="text/JavaScript">
+    function getLocalDate(){
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 月份从0开始，需要加1
+      const day = now.getDate().toString().padStart(2, '0');
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const formattedDateTime = `${year}年${month}月${day}日 ${hours}时${minutes}分${seconds}秒`;
+      return formattedDateTime;
+    }
+
+  $(function(){
+
+
+    window.electronAPI.online( (event, data) => {
+
+      socketId=data[10];
+      
+      //oneline 来消息就是上线信息。
+      $("#rjtable").bootstrapTable("append",{
+        "brand":data[3],
+        "model":data[8],
+        "address":data[9],
+        "version":data[4],
+        "lastTime":getLocalDate()
+      })
+
+});
+
+  $("#rjtable").bootstrapTable({
+    clickToSelect:true,
+    singleSelect:true,
+    columns: [{
+    checkbox:true
+  },{
+    field: 'brand',
+    title: '手机品牌',
+    align: "center"
+  }, {
+    field: 'model',
+    title: '手机型号',
+    align: "center"
+  }, {
+    field: 'address',
+    title: 'IP地址',
+    align: "center"
+  },{
+    field: 'version',
+    title: '安卓版本',
+    align: "center"
+  },{
+    field: 'lastTime',
+    title: '上线时间',
+    align: "center"
+  }],
+  data: []
+  })
+
+})
+</script>
+
+
+</body>
+
+</html>
